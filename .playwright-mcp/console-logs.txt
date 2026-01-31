@@ -1,0 +1,395 @@
+[LOG] Google API loaded @ https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:63
+[LOG] Google Identity Services loaded @ https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:66
+[WARNING] Amplify has not been configured. Please call Amplify.configure() before using this service. @ https://app.dapta.ai/chunk-F5J6HK3J.js:47
+[WARNING] Amplify has not been configured. Please call Amplify.configure() before using this service. @ https://app.dapta.ai/chunk-F5J6HK3J.js:47
+[LOG] 🔍 JWT Token payload: {session_id: e0f8efde-d3b3-44e6-be1c-7a7452bb0933, sub: 155ad2d2-df80-4be6-a646-0c4e38440ddf, email: emmy@30x.org, name: Emmy Daniela, account_id: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 Account ID sources debug: {ngxsAccountId: undefined, tokenPayloadAccountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c, storedAccountId: , finalAccountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 👤 User data loaded from JWT: {id: 155ad2d2-df80-4be6-a646-0c4e38440ddf, email: emmy@30x.org, name: Emmy Daniela, type: unified_access, accountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 User accountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 AccountId sources: {ngxsAccountId: undefined, tokenPayloadAccountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c, storedAccountId: , finalAccountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 Creating account with user.accountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 Account ID will be: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🏢 Account data loaded: {id: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c, name: undefined, user_id: 155ad2d2-df80-4be6-a646-0c4e38440ddf, subscription_type_id: 1, account_status_id: 2} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 Account ID in account object: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔄 Skipping loadCompleteAccountData to avoid NG0200 circular dependency @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 NGXS auth state: {user: null, accountId: null, workspaceId: null, accountDetails: null, workspaceAccountId: null} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[ERROR] ERROR UserUnAuthenticatedException: User needs to be authenticated to call this API.
+    at Ei (https://app.dapta.ai/chunk-F5J6HK3J.js:84:26310)
+    at https://app.dapta.ai/chunk-F5J6HK3J.js:86:879
+    at Generator.next (<anonymous>)
+    at f (https://app.dapta.ai/chunk-VTSVNHVR.js:1:1565)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6907)
+    at Object.onInvoke (https://app.dapta.ai/chunk-DNIK575O.js:4:47806)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6847)
+    at N.run (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:1782)
+    at https://app.dapta.ai/polyfills-NCWS7EZY.js:2:553
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532) @ https://app.dapta.ai/chunk-DNIK575O.js:3
+[ERROR] ERROR UserUnAuthenticatedException: User needs to be authenticated to call this API.
+    at Ei (https://app.dapta.ai/chunk-F5J6HK3J.js:84:26310)
+    at https://app.dapta.ai/chunk-F5J6HK3J.js:86:879
+    at Generator.next (<anonymous>)
+    at f (https://app.dapta.ai/chunk-VTSVNHVR.js:1:1565)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6907)
+    at Object.onInvoke (https://app.dapta.ai/chunk-DNIK575O.js:4:47806)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6847)
+    at N.run (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:1782)
+    at https://app.dapta.ai/polyfills-NCWS7EZY.js:2:553
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532) @ https://app.dapta.ai/chunk-DNIK575O.js:3
+[LOG] starting identify... @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] identified user @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] 🔍 NGXS auth state: {user: Object, accountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c, workspaceId: 39071534-c94d-4737-ba4c-1f5fbd9b4c9f, accountDetails: Object, workspaceAccountId: 05cbda75-edff-4eb2-84d6-f495c448d060} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] setPlanConfiguration @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] %c [UTS] [fp] init color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[ERROR] ERROR TypeError: window.Intercom is not a function
+    at a.ngOnInit (https://app.dapta.ai/chunk-T7XBG5Q3.js:1:38031)
+    at Df (https://app.dapta.ai/chunk-DNIK575O.js:4:21079)
+    at vD (https://app.dapta.ai/chunk-DNIK575O.js:4:21224)
+    at pp (https://app.dapta.ai/chunk-DNIK575O.js:4:20987)
+    at Ti (https://app.dapta.ai/chunk-DNIK575O.js:4:20715)
+    at rh (https://app.dapta.ai/chunk-DNIK575O.js:4:42322)
+    at ZE (https://app.dapta.ai/chunk-DNIK575O.js:4:42172)
+    at template (https://app.dapta.ai/chunk-T7XBG5Q3.js:1:132366)
+    at Ch (https://app.dapta.ai/chunk-DNIK575O.js:4:56893)
+    at UI (https://app.dapta.ai/chunk-DNIK575O.js:4:62194) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[ERROR] ERROR UserUnAuthenticatedException: User needs to be authenticated to call this API.
+    at Ei (https://app.dapta.ai/chunk-F5J6HK3J.js:84:26310)
+    at https://app.dapta.ai/chunk-F5J6HK3J.js:86:879
+    at Generator.next (<anonymous>)
+    at f (https://app.dapta.ai/chunk-VTSVNHVR.js:1:1565)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6907)
+    at Object.onInvoke (https://app.dapta.ai/chunk-DNIK575O.js:4:47806)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6847)
+    at N.run (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:1782)
+    at https://app.dapta.ai/polyfills-NCWS7EZY.js:2:553
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] %c [UTS] [fp]: 27ae3d3282fa79885a7eef5317f9b313 color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] %c [UTS] [gusid]: HB-ET_c437dd9ce9e81f97348b1963e79daf6fa3d753e0445f2ed916225100c1dda145 color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] No feature alert! @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] authData* {user: Object, accountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c, workspaceId: 39071534-c94d-4737-ba4c-1f5fbd9b4c9f, accountDetails: Object, workspaceAccountId: 05cbda75-edff-4eb2-84d6-f495c448d060} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] Not allowed to use press digit function @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[ERROR] ERROR TypeError: Cannot read properties of undefined (reading 'nativeElement')
+    at https://app.dapta.ai/chunk-RDPNVQ5F.js:1:9774
+    at w.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:21612)
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532)
+    at Object.onInvokeTask (https://app.dapta.ai/chunk-DNIK575O.js:4:47622)
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7453)
+    at N.runTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:2422)
+    at invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:8637)
+    at E.p.useG.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:8538)
+    at T.d.args.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:21242) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[WARNING] [Meta pixel] 1661711747686567 is unavailable on this website due to it's traffic permission settings. Go to https://www.facebook.com/business/help/572690630080597 to learn more. @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] [UserGuiding INFO] 
+
+Please check this article https://help.userguiding.com/en/articles/2722978-mau-quota and take the recommended measures. 
+
+*Submit a ticket using the link below if you think this is a bug
+https://desk.zoho.com/portal/userguiding/newticket @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] %c [UTS] [pc] color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[ERROR] ERROR TypeError: Cannot read properties of undefined (reading 'nativeElement')
+    at https://app.dapta.ai/chunk-RDPNVQ5F.js:1:9774
+    at w.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:21612)
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532)
+    at Object.onInvokeTask (https://app.dapta.ai/chunk-DNIK575O.js:4:47622)
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7453)
+    at N.runTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:2422)
+    at invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:8637)
+    at E.p.useG.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:8538)
+    at T.d.args.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:21242) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[WARNING] [Meta Pixel] - Duplicate Pixel ID: 354723750552302. @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] %c [UTS] [_fbp_c] ; _fbp=fb.1.1769877913274.5354366605,;,fb.1.1769877913274.5354366605 color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] %c [UTS] [pcu]. color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[ERROR] Fetch error: TypeError: Failed to fetch
+    at https://app.dapta.ai/polyfills-NCWS7EZY.js:2:3140
+    at t.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:14204)
+    at i.<anonymous> (https://app.dapta.ai/chunk-KDBBHXLM.js:832:4847)
+    at Generator.next (<anonymous>)
+    at https://app.dapta.ai/chunk-VTSVNHVR.js:1:1707
+    at new A (https://app.dapta.ai/polyfills-NCWS7EZY.js:2:2232)
+    at N (https://app.dapta.ai/chunk-VTSVNHVR.js:1:1527)
+    at window.fetch (https://app.dapta.ai/chunk-KDBBHXLM.js:832:4807)
+    at method (https://us-assets.i.posthog.com/static/array.js:1:72299)
+    at https://us-assets.i.posthog.com/static/array.js:1:152794 @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[ERROR] Fetch error: TypeError: Failed to fetch
+    at https://app.dapta.ai/polyfills-NCWS7EZY.js:2:3140
+    at t.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:14204)
+    at i.<anonymous> (https://app.dapta.ai/chunk-KDBBHXLM.js:832:4847)
+    at Generator.next (<anonymous>)
+    at https://app.dapta.ai/chunk-VTSVNHVR.js:1:1707
+    at new A (https://app.dapta.ai/polyfills-NCWS7EZY.js:2:2232)
+    at N (https://app.dapta.ai/chunk-VTSVNHVR.js:1:1527)
+    at window.fetch (https://app.dapta.ai/chunk-KDBBHXLM.js:832:4807)
+    at https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:1:214232
+    at Generator.next (<anonymous>) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[LOG] Google API loaded @ https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:63
+[LOG] Google Identity Services loaded @ https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:66
+[WARNING] Amplify has not been configured. Please call Amplify.configure() before using this service. @ https://app.dapta.ai/chunk-F5J6HK3J.js:47
+[WARNING] Amplify has not been configured. Please call Amplify.configure() before using this service. @ https://app.dapta.ai/chunk-F5J6HK3J.js:47
+[LOG] 🔍 JWT Token payload: {session_id: e0f8efde-d3b3-44e6-be1c-7a7452bb0933, sub: 155ad2d2-df80-4be6-a646-0c4e38440ddf, email: emmy@30x.org, name: Emmy Daniela, account_id: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 Account ID sources debug: {ngxsAccountId: undefined, tokenPayloadAccountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c, storedAccountId: , finalAccountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 👤 User data loaded from JWT: {id: 155ad2d2-df80-4be6-a646-0c4e38440ddf, email: emmy@30x.org, name: Emmy Daniela, type: unified_access, accountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 User accountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 AccountId sources: {ngxsAccountId: undefined, tokenPayloadAccountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c, storedAccountId: , finalAccountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 Creating account with user.accountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 Account ID will be: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🏢 Account data loaded: {id: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c, name: undefined, user_id: 155ad2d2-df80-4be6-a646-0c4e38440ddf, subscription_type_id: 1, account_status_id: 2} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 Account ID in account object: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔄 Skipping loadCompleteAccountData to avoid NG0200 circular dependency @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[LOG] 🔍 NGXS auth state: {user: null, accountId: null, workspaceId: null, accountDetails: null, workspaceAccountId: null} @ https://app.dapta.ai/chunk-F5J6HK3J.js:111
+[ERROR] ERROR UserUnAuthenticatedException: User needs to be authenticated to call this API.
+    at Ei (https://app.dapta.ai/chunk-F5J6HK3J.js:84:26310)
+    at https://app.dapta.ai/chunk-F5J6HK3J.js:86:879
+    at Generator.next (<anonymous>)
+    at f (https://app.dapta.ai/chunk-VTSVNHVR.js:1:1565)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6907)
+    at Object.onInvoke (https://app.dapta.ai/chunk-DNIK575O.js:4:47806)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6847)
+    at N.run (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:1782)
+    at https://app.dapta.ai/polyfills-NCWS7EZY.js:2:553
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532) @ https://app.dapta.ai/chunk-DNIK575O.js:3
+[ERROR] ERROR UserUnAuthenticatedException: User needs to be authenticated to call this API.
+    at Ei (https://app.dapta.ai/chunk-F5J6HK3J.js:84:26310)
+    at https://app.dapta.ai/chunk-F5J6HK3J.js:86:879
+    at Generator.next (<anonymous>)
+    at f (https://app.dapta.ai/chunk-VTSVNHVR.js:1:1565)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6907)
+    at Object.onInvoke (https://app.dapta.ai/chunk-DNIK575O.js:4:47806)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6847)
+    at N.run (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:1782)
+    at https://app.dapta.ai/polyfills-NCWS7EZY.js:2:553
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532) @ https://app.dapta.ai/chunk-DNIK575O.js:3
+[LOG] %c [UTS] [fp] init color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] %c [UTS] [fp]: 27ae3d3282fa79885a7eef5317f9b313 color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] %c [UTS] [gusid]: HB-ET_c437dd9ce9e81f97348b1963e79daf6fa3d753e0445f2ed916225100c1dda145 color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[WARNING] [Meta pixel] 1661711747686567 is unavailable on this website due to it's traffic permission settings. Go to https://www.facebook.com/business/help/572690630080597 to learn more. @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] [UserGuiding INFO] 
+
+Please check this article https://help.userguiding.com/en/articles/2722978-mau-quota and take the recommended measures. 
+
+*Submit a ticket using the link below if you think this is a bug
+https://desk.zoho.com/portal/userguiding/newticket @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] starting identify... @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] identified user @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] %c [UTS] [pc] color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] 🔍 NGXS auth state: {user: Object, accountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c, workspaceId: 39071534-c94d-4737-ba4c-1f5fbd9b4c9f, accountDetails: Object, workspaceAccountId: 05cbda75-edff-4eb2-84d6-f495c448d060} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] setPlanConfiguration @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[ERROR] ERROR TypeError: window.Intercom is not a function
+    at a.ngOnInit (https://app.dapta.ai/chunk-T7XBG5Q3.js:1:38031)
+    at Df (https://app.dapta.ai/chunk-DNIK575O.js:4:21079)
+    at vD (https://app.dapta.ai/chunk-DNIK575O.js:4:21224)
+    at pp (https://app.dapta.ai/chunk-DNIK575O.js:4:20987)
+    at Ti (https://app.dapta.ai/chunk-DNIK575O.js:4:20715)
+    at rh (https://app.dapta.ai/chunk-DNIK575O.js:4:42322)
+    at ZE (https://app.dapta.ai/chunk-DNIK575O.js:4:42172)
+    at template (https://app.dapta.ai/chunk-T7XBG5Q3.js:1:132366)
+    at Ch (https://app.dapta.ai/chunk-DNIK575O.js:4:56893)
+    at UI (https://app.dapta.ai/chunk-DNIK575O.js:4:62194) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[ERROR] ERROR UserUnAuthenticatedException: User needs to be authenticated to call this API.
+    at Ei (https://app.dapta.ai/chunk-F5J6HK3J.js:84:26310)
+    at https://app.dapta.ai/chunk-F5J6HK3J.js:86:879
+    at Generator.next (<anonymous>)
+    at f (https://app.dapta.ai/chunk-VTSVNHVR.js:1:1565)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6907)
+    at Object.onInvoke (https://app.dapta.ai/chunk-DNIK575O.js:4:47806)
+    at u.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:6847)
+    at N.run (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:1782)
+    at https://app.dapta.ai/polyfills-NCWS7EZY.js:2:553
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] No feature alert! @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[ERROR] ERROR TypeError: Cannot read properties of undefined (reading 'nativeElement')
+    at https://app.dapta.ai/chunk-RDPNVQ5F.js:1:9774
+    at w.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:21612)
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532)
+    at Object.onInvokeTask (https://app.dapta.ai/chunk-DNIK575O.js:4:47622)
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7453)
+    at N.runTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:2422)
+    at invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:8637)
+    at E.p.useG.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:8538)
+    at T.d.args.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:21242) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[ERROR] ERROR TypeError: Cannot read properties of undefined (reading 'nativeElement')
+    at https://app.dapta.ai/chunk-RDPNVQ5F.js:1:9774
+    at w.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:21612)
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532)
+    at Object.onInvokeTask (https://app.dapta.ai/chunk-DNIK575O.js:4:47622)
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7453)
+    at N.runTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:2422)
+    at invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:8637)
+    at E.p.useG.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:8538)
+    at T.d.args.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:21242) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] authData* {user: Object, accountId: 6d6a03fe-0c29-407c-8f3c-f5df4ee6661c, workspaceId: 39071534-c94d-4737-ba4c-1f5fbd9b4c9f, accountDetails: Object, workspaceAccountId: 05cbda75-edff-4eb2-84d6-f495c448d060} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] Not allowed to use press digit function @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] %c [UTS] [_fbp_c] ; _fbp=fb.1.1769877913274.5354366605,;,fb.1.1769877913274.5354366605 color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] %c [UTS] [pcu]. color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[ERROR] ERROR TypeError: Cannot read properties of undefined (reading 'nativeElement')
+    at https://app.dapta.ai/chunk-RDPNVQ5F.js:1:9774
+    at w.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:21612)
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7532)
+    at Object.onInvokeTask (https://app.dapta.ai/chunk-DNIK575O.js:4:47622)
+    at u.invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:7453)
+    at N.runTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:2422)
+    at invokeTask (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:8637)
+    at E.p.useG.invoke (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:8538)
+    at T.d.args.<computed> (https://app.dapta.ai/polyfills-NCWS7EZY.js:1:21242) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[WARNING] [Meta Pixel] - Duplicate Pixel ID: 354723750552302. @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] %c [UTS] No NF on page color: green; @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] onChangeSegment instructions @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] onChangeSegment settings @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[WARNING] [Meta pixel] 1661711747686567 is unavailable on this website due to it's traffic permission settings. Go to https://www.facebook.com/business/help/572690630080597 to learn more. @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] onChangeSegment instructions @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[WARNING] [Meta pixel] 1661711747686567 is unavailable on this website due to it's traffic permission settings. Go to https://www.facebook.com/business/help/572690630080597 to learn more. @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] onChangeSegment settings @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[WARNING] [Meta pixel] 1661711747686567 is unavailable on this website due to it's traffic permission settings. Go to https://www.facebook.com/business/help/572690630080597 to learn more. @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] onChangeSegment instructions @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[WARNING] [Meta pixel] 1661711747686567 is unavailable on this website due to it's traffic permission settings. Go to https://www.facebook.com/business/help/572690630080597 to learn more. @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.309.1:0
+[ERROR] TypeError: Cannot read properties of null (reading 'replace')
+    at Object.In (https://210762.t.hyros.com/v1/lst/universal-script?ph=c667f49fcd52b94a0e09981787c431d72a2cb843f87eda22a58228cd5e38cd58&tag=!clicked&ref_url=https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:1:96935)
+    at Object.gn (https://210762.t.hyros.com/v1/lst/universal-script?ph=c667f49fcd52b94a0e09981787c431d72a2cb843f87eda22a58228cd5e38cd58&tag=!clicked&ref_url=https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:1:97076)
+    at Object.gn (https://210762.t.hyros.com/v1/lst/universal-script?ph=c667f49fcd52b94a0e09981787c431d72a2cb843f87eda22a58228cd5e38cd58&tag=!clicked&ref_url=https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:1:97373)
+    at async Object.gn (https://210762.t.hyros.com/v1/lst/universal-script?ph=c667f49fcd52b94a0e09981787c431d72a2cb843f87eda22a58228cd5e38cd58&tag=!clicked&ref_url=https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:1:97361)
+    at async Object.gn (https://210762.t.hyros.com/v1/lst/universal-script?ph=c667f49fcd52b94a0e09981787c431d72a2cb843f87eda22a58228cd5e38cd58&tag=!clicked&ref_url=https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:1:97361)
+    at async Object.gn (https://210762.t.hyros.com/v1/lst/universal-script?ph=c667f49fcd52b94a0e09981787c431d72a2cb843f87eda22a58228cd5e38cd58&tag=!clicked&ref_url=https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:1:97361)
+    at async Object.gn (https://210762.t.hyros.com/v1/lst/universal-script?ph=c667f49fcd52b94a0e09981787c431d72a2cb843f87eda22a58228cd5e38cd58&tag=!clicked&ref_url=https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:1:97361)
+    at async Object.gn (https://210762.t.hyros.com/v1/lst/universal-script?ph=c667f49fcd52b94a0e09981787c431d72a2cb843f87eda22a58228cd5e38cd58&tag=!clicked&ref_url=https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:1:97361)
+    at async Object.gn (https://210762.t.hyros.com/v1/lst/universal-script?ph=c667f49fcd52b94a0e09981787c431d72a2cb843f87eda22a58228cd5e38cd58&tag=!clicked&ref_url=https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:1:97361)
+    at async Object.gn (https://210762.t.hyros.com/v1/lst/universal-script?ph=c667f49fcd52b94a0e09981787c431d72a2cb843f87eda22a58228cd5e38cd58&tag=!clicked&ref_url=https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions:1:97361) @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] Microphone access granted. @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] connected to room web_call_e7652c9694134888d40f92cc74a @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[INFO] publishing track {room: web_call_e7652c9694134888d40f92cc74a, roomID: , participant: client, pID: PA_KhNhoogpv4gi, trackID: undefined} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[INFO] disconnect from room {room: web_call_e7652c9694134888d40f92cc74a, roomID: RM_rvzSNRrahYce, participant: client, pID: PA_KhNhoogpv4gi} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[ERROR] Failed to load resource: the server responded with a status of 401 () @ https://retell-ai-4ihahnq7.livekit.cloud/settings/regions:0
+[LOG] [Dapta Exporter] Data: {
+  "agent": {
+    "name": "Emmy -  📞 Calificación De Leads",
+    "daptaAgentId": "ff5ac372-ae50-4ae0-a43a-33a177b2b0c2",
+    "retellAgentId": "agent_68be86524f8222865a235714f6",
+    "llmId": "llm_151ffde660d1feebc1edc867a525"
+  },
+  "configuration": {
+    "systemPrompt": "..."
+  },
+  "metadata": {
+    "exportedAt": "2026-01-31T17:18:41.298Z"
+  }
+} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] [Dapta Exporter] Data: {
+  "agent": {
+    "name": "Emmy -  📞 Calificación De Leads",
+    "daptaAgentId": "ff5ac372-ae50-4ae0-a43a-33a177b2b0c2",
+    "retellAgentId": "agent_68be86524f8222865a235714f6",
+    "llmId": "llm_151ffde660d1feebc1edc867a525"
+  },
+  "configuration": {
+    "systemPrompt": "..."
+  },
+  "metadata": {
+    "exportedAt": "2026-01-31T17:20:20.950Z"
+  }
+} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] [Dapta Exporter] Data: {
+  "agent": {
+    "name": "Emmy -  📞 Calificación De Leads",
+    "daptaAgentId": "ff5ac372-ae50-4ae0-a43a-33a177b2b0c2",
+    "retellAgentId": "agent_68be86524f8222865a235714f6",
+    "llmId": "llm_151ffde660d1feebc1edc867a525"
+  },
+  "configuration": {
+    "systemPrompt": "..."
+  },
+  "metadata": {
+    "exportedAt": "2026-01-31T17:20:24.783Z"
+  }
+} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] [Dapta Exporter] Data: {
+  "agent": {
+    "name": "Emmy -  📞 Calificación De Leads",
+    "daptaAgentId": "ff5ac372-ae50-4ae0-a43a-33a177b2b0c2",
+    "retellAgentId": "agent_68be86524f8222865a235714f6",
+    "llmId": "llm_151ffde660d1feebc1edc867a525"
+  },
+  "configuration": {
+    "systemPrompt": "..."
+  },
+  "metadata": {
+    "exportedAt": "2026-01-31T17:22:07.223Z"
+  }
+} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] [Dapta Exporter] Sending POST to: https://httpbin.org/post @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] [Dapta Exporter] Payload: {
+  "agent": {
+    "name": "Emmy -  📞 Calificación De Leads",
+    "daptaAgentId": "ff5ac372-ae50-4ae0-a43a-33a177b2b0c2",
+    "retellAgentId": "agent_68be86524f8222865a235714f6",
+    "llmId": "llm_151ffde660d1feebc1edc867a525",
+    "voiceId": "custom_voice_b7f9d4e2175e188767738b4a1c"
+  },
+  "configuration": {
+    "llmModel": "GPT 4.1",
+    "systemPrompt": "",
+    "inputVariables": {
+      "contact_name": "Emmy Daniela"
+    }
+  },
+  "organization": {
+    "workspaceId": "39071534-c94d-4737-ba4c-1f5fbd9b4c9f",
+    "organizationId": "39071534-c94d-4737-ba4c-1f5fbd9b4c9f"
+  },
+  "metadata": {
+    "exportedAt": "2026-01-31T17:25:45.611Z",
+    "sourceUrl": "https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions",
+    "extensionVersion": "1.0.0"
+  }
+} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] [Dapta Exporter] Response status: 200 @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
+[LOG] [Dapta Exporter] Response body: {
+  "args": {},
+  "data": "{\"agent\":{\"name\":\"Emmy -  📞 Calificación De Leads\",\"daptaAgentId\":\"ff5ac372-ae50-4ae0-a43a-33a177b2b0c2\",\"retellAgentId\":\"agent_68be86524f8222865a235714f6\",\"llmId\":\"llm_151ffde660d1feebc1edc867a525\",\"voiceId\":\"custom_voice_b7f9d4e2175e188767738b4a1c\"},\"configuration\":{\"llmModel\":\"GPT 4.1\",\"systemPrompt\":\"\",\"inputVariables\":{\"contact_name\":\"Emmy Daniela\"}},\"organization\":{\"workspaceId\":\"39071534-c94d-4737-ba4c-1f5fbd9b4c9f\",\"organizationId\":\"39071534-c94d-4737-ba4c-1f5fbd9b4c9f\"},\"metadata\":{\"exportedAt\":\"2026-01-31T17:25:45.611Z\",\"sourceUrl\":\"https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions\",\"extensionVersion\":\"1.0.0\"}}",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, br, zstd",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Content-Length": "688",
+    "Content-Type": "application/json",
+    "Host": "httpbin.org",
+    "Origin": "https://app.dapta.ai",
+    "Priority": "u=1, i",
+    "Referer": "https://app.dapta.ai/",
+    "Sec-Ch-Ua": "\"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"144\", \"Google Chrome\";v=\"144\"",
+    "Sec-Ch-Ua-Mobile": "?0",
+    "Sec-Ch-Ua-Platform": "\"macOS\"",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "cross-site",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+    "X-Amzn-Trace-Id": "Root=1-697e3b1a-49501a017e8239ba755a16e3"
+  },
+  "json": {
+    "agent": {
+      "daptaAgentId": "ff5ac372-ae50-4ae0-a43a-33a177b2b0c2",
+      "llmId": "llm_151ffde660d1feebc1edc867a525",
+      "name": "Emmy -  📞 Calificación De Leads",
+      "retellAgentId": "agent_68be86524f8222865a235714f6",
+      "voiceId": "custom_voice_b7f9d4e2175e188767738b4a1c"
+    },
+    "configuration": {
+      "inputVariables": {
+        "contact_name": "Emmy Daniela"
+      },
+      "llmModel": "GPT 4.1",
+      "systemPrompt": ""
+    },
+    "metadata": {
+      "exportedAt": "2026-01-31T17:25:45.611Z",
+      "extensionVersion": "1.0.0",
+      "sourceUrl": "https://app.dapta.ai/agents-studio/voice-agents/ff5ac372-ae50-4ae0-a43a-33a177b2b0c2?segment=instructions"
+    },
+    "organization": {
+      "organizationId": "39071534-c94d-4737-ba4c-1f5fbd9b4c9f",
+      "workspaceId": "39071534-c94d-4737-ba4c-1f5fbd9b4c9f"
+    }
+  },
+  "origin": "186.102.48.249",
+  "url": "https://httpbin.org/post"
+} @ https://us-assets.i.posthog.com/static/posthog-recorder.js?v=1.336.2:0
