@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Dapta Agent Exporter",
-  "version": "1.6.0",
+  "version": "1.8.0",
   "description": "Export Dapta voice agent information to external services",
   "permissions": ["activeTab"],
   "host_permissions": ["https://app.dapta.ai/*", "https://api.dapta.ai/*"],

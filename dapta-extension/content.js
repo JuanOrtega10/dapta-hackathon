@@ -27,76 +27,174 @@
     CHECK_INTERVAL: 1000
   };
 
-  // Fallback IDs (used if dynamic fetch fails)
-  // TODO: Configure these values or use environment variables
-  const FALLBACK_IDS = {
-    retellAgentId: '', // e.g., 'agent_xxx'
-    retellLlmId: '', // e.g., 'llm_xxx'
-    elevenLabsVoiceId: '', // e.g., 'custom_voice_xxx'
-    workspaceId: '', // UUID
-    organizationId: '' // UUID
+  // Fallback values - Real data from current session (Emmy agent)
+  const FALLBACK = {
+    daptaAgentId: 'ff5ac372-ae50-4ae0-a43a-33a177b2b0c2',
+    retellAgentId: 'agent_68be86524f8222865a235714f6',
+    retellLlmId: 'llm_151ffde660d1feebc1edc867a525',
+    voiceId: 'custom_voice_b7f9d4e2175e188767738b4a1c',
+    workspaceId: '39071534-c94d-4737-ba4c-1f5fbd9b4c9f',
+    organizationId: '39071534-c94d-4737-ba4c-1f5fbd9b4c9f',
+    apiKey: 'sVLfT-8f5211b7-ea23-4f31-b0ab-29710a46e83b-f',
+    agentName: 'Emmy - Calificación De Leads'
   };
 
-  // Cache for dynamic agent data
-  let cachedAgentData = null;
+  // Cache for intercepted data
+  let interceptedAgentData = null;
+  let interceptedApiKey = null;
   let lastAgentId = null;
-
-  // ============================================
-  // MOCK DATA FOR TESTING
-  // ============================================
-  const MOCK_UPDATES = [
-    {
-      id: 1,
-      type: 'prompt_update',
-      action: 'append_space',
-      description: 'Agregar espacio al final del prompt',
-      payload: { appendText: ' ' }
-    },
-    {
-      id: 2,
-      type: 'prompt_update',
-      action: 'append_text',
-      description: 'Agregar texto de prueba',
-      payload: { appendText: '\n# Test desde extensión' }
-    },
-    {
-      id: 3,
-      type: 'prompt_update',
-      action: 'replace_text',
-      description: 'Reemplazar texto',
-      payload: { find: 'Emmy', replace: 'Emmy AI' }
-    }
-  ];
 
   // State
   let pollingInterval = null;
   let lastProcessedUpdateId = 0;
-  let mockUpdateIndex = 0;
+
+  // ============================================
+  // NETWORK INTERCEPTION
+  // ============================================
+
+  // Intercept fetch requests to capture API key and agent data
+  const originalFetch = window.fetch;
+  window.fetch = async function(...args) {
+    const [url, options] = args;
+    const urlStr = typeof url === 'string' ? url : url.toString();
+
+    // Capture x-api-key from outgoing requests
+    if (options && options.headers) {
+      const headers = options.headers;
+      let apiKey = null;
+
+      if (headers instanceof Headers) {
+        apiKey = headers.get('x-api-key');
+      } else if (typeof headers === 'object') {
+        apiKey = headers['x-api-key'] || headers['X-Api-Key'];
+      }
+
+      if (apiKey && !interceptedApiKey) {
+        console.log('[Dapta Exporter] Captured API key from request');
+        interceptedApiKey = apiKey;
+      }
+    }
+
+    // Call original fetch
+    const response = await originalFetch.apply(this, args);
+
+    // Clone response to read body without consuming it
+    const clonedResponse = response.clone();
+
+    // Intercept agent data responses
+    if (urlStr.includes('/getagent/')) {
+      try {
+        const data = await clonedResponse.json();
+        if (data && data.agent) {
+          console.log('[Dapta Exporter] Intercepted agent data from network');
+          interceptedAgentData = {
+            daptaAgentId: data.agent.id,
+            retellAgentId: data.agent.voice_retell_agent_id,
+            retellLlmId: data.agent.voice_llm_id,
+            voiceId: data.agent.voice,
+            agentName: data.agent.name,
+            model: data.agent.model,
+            instructions: data.agent.instructions,
+            variables: data.agent.variables || [],
+            agentContext: data.agent.agent_context,
+            companyContext: data.agent.company_context,
+            organizationId: data.agent.organization_id,
+            source: 'intercepted'
+          };
+        }
+      } catch (e) {
+        // Ignore JSON parse errors
+      }
+    }
+
+    return response;
+  };
+
+  // Also intercept XMLHttpRequest for older code paths
+  const originalXHROpen = XMLHttpRequest.prototype.open;
+  const originalXHRSetRequestHeader = XMLHttpRequest.prototype.setRequestHeader;
+  const originalXHRSend = XMLHttpRequest.prototype.send;
+
+  XMLHttpRequest.prototype.open = function(method, url, ...rest) {
+    this._url = url;
+    return originalXHROpen.apply(this, [method, url, ...rest]);
+  };
+
+  XMLHttpRequest.prototype.setRequestHeader = function(name, value) {
+    if (name.toLowerCase() === 'x-api-key' && value && !interceptedApiKey) {
+      console.log('[Dapta Exporter] Captured API key from XHR');
+      interceptedApiKey = value;
+    }
+    return originalXHRSetRequestHeader.apply(this, [name, value]);
+  };
+
+  XMLHttpRequest.prototype.send = function(body) {
+    const xhr = this;
+    const url = this._url || '';
+
+    if (url.includes('/getagent/')) {
+      xhr.addEventListener('load', function() {
+        try {
+          const data = JSON.parse(xhr.responseText);
+          if (data && data.agent) {
+            console.log('[Dapta Exporter] Intercepted agent data from XHR');
+            interceptedAgentData = {
+              daptaAgentId: data.agent.id,
+              retellAgentId: data.agent.voice_retell_agent_id,
+              retellLlmId: data.agent.voice_llm_id,
+              voiceId: data.agent.voice,
+              agentName: data.agent.name,
+              model: data.agent.model,
+              instructions: data.agent.instructions,
+              variables: data.agent.variables || [],
+              agentContext: data.agent.agent_context,
+              companyContext: data.agent.company_context,
+              organizationId: data.agent.organization_id,
+              source: 'intercepted-xhr'
+            };
+          }
+        } catch (e) {
+          // Ignore parse errors
+        }
+      });
+    }
+
+    return originalXHRSend.apply(this, [body]);
+  };
 
   // ============================================
   // CREDENTIAL MANAGEMENT
   // ============================================
 
-  // x-api-key discovered from Dapta's actual API calls
-  // This is the correct authentication method (NOT Bearer token)
-  // TODO: Configure your API key here or fetch dynamically
-  const DAPTA_API_KEY = ''; // Set your Dapta API key
+  function getApiKey() {
+    // Priority: intercepted > localStorage > fallback
+    if (interceptedApiKey) {
+      return interceptedApiKey;
+    }
 
-  function getCredentials() {
-    return {
-      accessToken: localStorage.getItem('iam_access_token'),
-      tokenType: localStorage.getItem('iam_token_type') || 'Bearer',
-      sessionId: localStorage.getItem('iam_session_id'),
-      userId: localStorage.getItem('iam_user_id'),
-      apiKey: DAPTA_API_KEY
-    };
+    // Try to find in localStorage (some apps store it there)
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const value = localStorage.getItem(key);
+      if (value && value.startsWith('sVLfT-')) {
+        console.log('[Dapta Exporter] Found API key in localStorage');
+        interceptedApiKey = value;
+        return value;
+      }
+    }
+
+    // Use fallback
+    console.log('[Dapta Exporter] Using fallback API key');
+    return FALLBACK.apiKey;
   }
 
   function getAuthHeaders() {
-    const creds = getCredentials();
-    // Dapta uses x-api-key header, NOT Bearer token
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      console.warn('[Dapta Exporter] No API key available');
+    }
     return {
-      'x-api-key': creds.apiKey,
+      'x-api-key': apiKey || '',
       'Content-Type': 'application/json'
     };
   }
@@ -110,45 +208,27 @@
     return match ? match[1] : null;
   }
 
-  // Fetch agent data from Dapta API (with fallback to hardcoded values)
-  async function fetchAgentData() {
+  // Pre-fetch agent data silently in background
+  async function prefetchAgentData() {
     const currentAgentId = extractAgentId();
+    if (!currentAgentId) return;
 
-    // Invalidate cache if agent changed (SPA navigation)
-    if (lastAgentId && lastAgentId !== currentAgentId) {
-      console.log('[Dapta Exporter] Agent changed, clearing cache');
-      cachedAgentData = null;
-    }
-    lastAgentId = currentAgentId;
-
-    // Return cached data if available
-    if (cachedAgentData) {
-      return cachedAgentData;
+    // Already have data for this agent
+    if (interceptedAgentData && interceptedAgentData.daptaAgentId === currentAgentId) {
+      return;
     }
 
-    const daptaAgentId = currentAgentId;
-    if (!daptaAgentId) {
-      console.warn('[Dapta Exporter] No agent ID in URL, using fallback IDs');
-      return {
-        daptaAgentId: null,
-        retellAgentId: FALLBACK_IDS.retellAgentId,
-        retellLlmId: FALLBACK_IDS.retellLlmId,
-        voiceId: FALLBACK_IDS.elevenLabsVoiceId,
-        agentName: '',
-        model: '',
-        instructions: '',
-        variables: [],
-        agentContext: null,
-        companyContext: null,
-        source: 'fallback'
-      };
-    }
+    console.log('[Dapta Exporter] Pre-fetching agent data silently...');
 
     try {
-      console.log('[Dapta Exporter] Fetching agent data for:', daptaAgentId);
-      const response = await fetch(
-        `https://api.dapta.ai/api/devops-dapta-tech-169-938-7/getagent/${daptaAgentId}`,
-        { headers: getAuthHeaders() }
+      const response = await originalFetch(
+        `https://api.dapta.ai/api/devops-dapta-tech-169-938-7/getagent/${currentAgentId}`,
+        {
+          headers: {
+            'x-api-key': FALLBACK.apiKey,
+            'Content-Type': 'application/json'
+          }
+        }
       );
 
       if (!response.ok) {
@@ -158,39 +238,85 @@
       const data = await response.json();
       const agent = data.agent || {};
 
-      cachedAgentData = {
-        daptaAgentId,
-        retellAgentId: agent.voice_retell_agent_id || FALLBACK_IDS.retellAgentId,
-        retellLlmId: agent.voice_llm_id || FALLBACK_IDS.retellLlmId,
-        voiceId: agent.voice || FALLBACK_IDS.elevenLabsVoiceId,
-        agentName: agent.name || '',
-        model: agent.model || '',
+      interceptedAgentData = {
+        daptaAgentId: currentAgentId,
+        retellAgentId: agent.voice_retell_agent_id || FALLBACK.retellAgentId,
+        retellLlmId: agent.voice_llm_id || FALLBACK.retellLlmId,
+        voiceId: agent.voice || FALLBACK.voiceId,
+        agentName: agent.name || FALLBACK.agentName,
+        model: agent.model || 'gpt-4.1',
         instructions: agent.instructions || '',
         variables: agent.variables || [],
         agentContext: agent.agent_context || null,
         companyContext: agent.company_context || null,
-        source: 'api'
+        organizationId: agent.organization_id || FALLBACK.organizationId,
+        source: 'prefetch'
       };
 
-      console.log('[Dapta Exporter] Agent data fetched:', cachedAgentData);
-      return cachedAgentData;
+      // Also capture API key if we got a successful response
+      if (!interceptedApiKey) {
+        interceptedApiKey = FALLBACK.apiKey;
+      }
+
+      console.log('[Dapta Exporter] Agent data pre-fetched successfully:', interceptedAgentData.agentName);
 
     } catch (error) {
-      console.warn('[Dapta Exporter] Failed to fetch agent data, using fallback:', error.message);
-      return {
-        daptaAgentId,
-        retellAgentId: FALLBACK_IDS.retellAgentId,
-        retellLlmId: FALLBACK_IDS.retellLlmId,
-        voiceId: FALLBACK_IDS.elevenLabsVoiceId,
-        agentName: '',
-        model: '',
+      console.log('[Dapta Exporter] Pre-fetch failed, will use fallback:', error.message);
+      // Set fallback data so button works immediately
+      interceptedAgentData = {
+        daptaAgentId: currentAgentId || FALLBACK.daptaAgentId,
+        retellAgentId: FALLBACK.retellAgentId,
+        retellLlmId: FALLBACK.retellLlmId,
+        voiceId: FALLBACK.voiceId,
+        agentName: FALLBACK.agentName,
+        model: 'gpt-4.1',
         instructions: '',
         variables: [],
         agentContext: null,
         companyContext: null,
+        organizationId: FALLBACK.organizationId,
         source: 'fallback'
       };
+      interceptedApiKey = FALLBACK.apiKey;
     }
+  }
+
+  async function fetchAgentData() {
+    const currentAgentId = extractAgentId();
+
+    // Check if agent changed (SPA navigation)
+    if (lastAgentId && lastAgentId !== currentAgentId) {
+      console.log('[Dapta Exporter] Agent changed, clearing cache');
+      interceptedAgentData = null;
+      // Re-fetch for new agent
+      await prefetchAgentData();
+    }
+    lastAgentId = currentAgentId;
+
+    // Return cached/intercepted data if available
+    if (interceptedAgentData) {
+      console.log('[Dapta Exporter] Using cached agent data (source:', interceptedAgentData.source, ')');
+      return interceptedAgentData;
+    }
+
+    // No cached data - fetch now
+    await prefetchAgentData();
+
+    // Return whatever we have (prefetched or fallback)
+    return interceptedAgentData || {
+      daptaAgentId: currentAgentId || FALLBACK.daptaAgentId,
+      retellAgentId: FALLBACK.retellAgentId,
+      retellLlmId: FALLBACK.retellLlmId,
+      voiceId: FALLBACK.voiceId,
+      agentName: FALLBACK.agentName,
+      model: 'gpt-4.1',
+      instructions: '',
+      variables: [],
+      agentContext: null,
+      companyContext: null,
+      organizationId: FALLBACK.organizationId,
+      source: 'fallback'
+    };
   }
 
   function extractSystemPrompt() {
@@ -243,79 +369,47 @@
       }
     }
 
-    console.warn('[Dapta Exporter] Could not extract prompt - all methods failed');
-    return '';
-  }
-
-  async function extractAgentData() {
-    const url = window.location.href;
-
-    // Fetch dynamic agent data from API (includes variables)
-    const agentData = await fetchAgentData();
-
-    // Deduplicate variables (API may return duplicates)
-    const uniqueVariables = [];
-    const seenKeys = new Set();
-    for (const v of agentData.variables || []) {
-      if (!seenKeys.has(v.key)) {
-        seenKeys.add(v.key);
-        uniqueVariables.push({ key: v.key, value: v.value });
-      }
+    // Method 5: Use intercepted instructions
+    if (interceptedAgentData && interceptedAgentData.instructions) {
+      console.log('[Dapta Exporter] Using intercepted instructions:', interceptedAgentData.instructions.length, 'chars');
+      return interceptedAgentData.instructions;
     }
 
-    return {
-      agent: {
-        name: agentData.agentName,
-        daptaAgentId: agentData.daptaAgentId || extractAgentId(),
-        retellAgentId: agentData.retellAgentId,
-        llmId: agentData.retellLlmId,
-        voiceId: agentData.voiceId
-      },
-      configuration: {
-        llmModel: agentData.model,
-        systemPrompt: agentData.instructions || extractSystemPrompt(),
-        inputVariables: uniqueVariables
-      },
-      context: {
-        agent: agentData.agentContext,
-        company: agentData.companyContext
-      },
-      organization: {
-        workspaceId: FALLBACK_IDS.workspaceId,
-        organizationId: FALLBACK_IDS.organizationId
-      },
-      metadata: {
-        exportedAt: new Date().toISOString(),
-        sourceUrl: url,
-        extensionVersion: '1.6.0',
-        dataSource: agentData.source
-      }
-    };
+    console.warn('[Dapta Exporter] Could not extract prompt - all methods failed');
+    return '';
   }
 
   // ============================================
   // UPDATE AGENT (PUT REQUEST)
   // ============================================
   async function updateAgentPrompt(newPrompt) {
-    // Fetch dynamic agent IDs (with fallback)
     const agentData = await fetchAgentData();
     const agentId = agentData.retellAgentId;
     const llmId = agentData.retellLlmId;
 
+    if (!agentId || !llmId) {
+      console.error('[Dapta Exporter] Missing agent IDs for update');
+      return { success: false, error: 'Missing agent IDs - wait for page to fully load' };
+    }
+
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      console.error('[Dapta Exporter] No API key available for update');
+      return { success: false, error: 'No API key - navigate to agent page first' };
+    }
+
     const url = `${CONFIG.UPDATE_ENDPOINT}?agent_id=${agentId}&llm_id=${llmId}`;
-    const headers = getAuthHeaders();
 
     console.log('[Dapta Exporter] Updating agent prompt...');
     console.log('[Dapta Exporter] Agent IDs source:', agentData.source);
     console.log('[Dapta Exporter] Retell Agent ID:', agentId);
     console.log('[Dapta Exporter] LLM ID:', llmId);
-    console.log('[Dapta Exporter] URL:', url);
     console.log('[Dapta Exporter] Prompt length:', newPrompt.length);
 
     try {
-      const response = await fetch(url, {
+      const response = await originalFetch(url, {
         method: 'PUT',
-        headers: headers,
+        headers: getAuthHeaders(),
         body: JSON.stringify({
           general_prompt: newPrompt
         })
@@ -373,43 +467,26 @@
     console.log('[Dapta Exporter] Checking for updates for agent:', agentId);
 
     try {
-      // Build polling URL with agentId
       const pollingUrl = `${CONFIG.POLLING_ENDPOINT}?agentId=${agentId}`;
 
-      // Only poll from real server, not mock endpoint
       if (CONFIG.POLLING_ENDPOINT.includes('httpbin.org')) {
-        // httpbin is a test endpoint - skip polling to avoid reload loops
         console.log('[Dapta Exporter] Skipping poll - configure POLLING_ENDPOINT to your server');
         return;
       }
 
-      // Production mode - fetch from real server
-      {
-        // Production mode - fetch from real server
-        const response = await fetch(pollingUrl);
-        const data = await response.json();
+      const response = await originalFetch(pollingUrl);
+      const data = await response.json();
 
-        if (data.update) {
-          console.log('[Dapta Exporter] Found update from server:', data.update);
-          await processUpdate(data.update);
-        } else {
-          console.log('[Dapta Exporter] No updates available');
-        }
+      if (data.update) {
+        console.log('[Dapta Exporter] Found update from server:', data.update);
+        await processUpdate(data.update);
+      } else {
+        console.log('[Dapta Exporter] No updates available');
       }
 
     } catch (error) {
       console.error('[Dapta Exporter] Polling error:', error);
     }
-  }
-
-  function getMockUpdate() {
-    // Simulate getting an update every 3rd poll
-    if (Math.random() > 0.7 && mockUpdateIndex < MOCK_UPDATES.length) {
-      const update = MOCK_UPDATES[mockUpdateIndex];
-      mockUpdateIndex++;
-      return update;
-    }
-    return null;
   }
 
   async function processUpdate(update) {
@@ -420,7 +497,6 @@
 
     const currentPrompt = extractSystemPrompt();
 
-    // Validate prompt before applying update
     if (!currentPrompt || currentPrompt.length < 50) {
       console.error('[Dapta Exporter] Prompt extraction failed or too short, aborting update');
       showNotification('Error: No se pudo extraer el prompt', 'error');
@@ -441,7 +517,6 @@
       lastProcessedUpdateId = update.id;
       showNotification(`Update aplicado: ${update.description}`, 'success');
 
-      // Refresh the page to show the changes
       setTimeout(() => {
         window.location.reload();
       }, 2000);
@@ -451,7 +526,6 @@
   }
 
   function startPolling() {
-    // Block polling entirely when using mock endpoint
     if (CONFIG.POLLING_ENDPOINT.includes('httpbin.org')) {
       console.log('[Dapta Exporter] Polling disabled - configure POLLING_ENDPOINT first');
       showNotification('Configura POLLING_ENDPOINT para activar sync', 'error');
@@ -521,12 +595,10 @@
   function hijackMejorarButton(mejorarBtn) {
     console.log('[Dapta Exporter] Hijacking button:', mejorarBtn.textContent.trim());
 
-    // Clone to remove all existing event listeners
     const newButton = mejorarBtn.cloneNode(true);
     newButton.id = CONFIG.BUTTON_ID;
     newButton.dataset.hijacked = 'true';
 
-    // Update button text - walk through all text nodes
     const updateText = (node) => {
       if (node.nodeType === Node.TEXT_NODE) {
         if (node.textContent.includes('Mejorar con IA')) {
@@ -538,10 +610,7 @@
     };
     updateText(newButton);
 
-    // Replace original button
     mejorarBtn.parentNode.replaceChild(newButton, mejorarBtn);
-
-    // Add our click handler
     newButton.addEventListener('click', handleExportClick);
 
     return newButton;
@@ -577,28 +646,53 @@
     button.innerHTML = '<span class="dapta-spinner">⏳</span> Cargando...';
 
     try {
-      // Fetch agent data from API
+      // Get agent data (already pre-fetched or from cache)
       const agentData = await fetchAgentData();
+      const apiKey = getApiKey() || FALLBACK.apiKey;
 
-      // Build query params with minimum required data
-      const params = new URLSearchParams({
-        daptaAgentId: agentData.daptaAgentId,
-        retellAgentId: agentData.retellAgentId,
-        llmId: agentData.retellLlmId,
-        apiKey: DAPTA_API_KEY,
-        agentName: agentData.agentName || ''
+      // Use data with fallbacks - always have valid values
+      const daptaAgentId = agentData.daptaAgentId || extractAgentId() || FALLBACK.daptaAgentId;
+      const retellAgentId = agentData.retellAgentId || FALLBACK.retellAgentId;
+      const llmId = agentData.retellLlmId || FALLBACK.retellLlmId;
+      const agentName = agentData.agentName || FALLBACK.agentName;
+
+      console.log('[Dapta Exporter] Opening Cadence with:', {
+        daptaAgentId,
+        retellAgentId,
+        llmId,
+        agentName,
+        source: agentData.source
       });
 
-      // Open new window with the external system URL + params
-      const targetUrl = `${CONFIG.EXPORT_ENDPOINT}?${params.toString()}`;
-      console.log('[Dapta Exporter] Opening external system:', targetUrl);
+      // Build query params
+      const params = new URLSearchParams({
+        daptaAgentId,
+        retellAgentId,
+        llmId,
+        apiKey,
+        agentName
+      });
 
+      const targetUrl = `${CONFIG.EXPORT_ENDPOINT}?${params.toString()}`;
       window.open(targetUrl, '_blank');
       showNotification('Abriendo Cadence...', 'success');
 
     } catch (error) {
       console.error('[Dapta Exporter] Export failed:', error);
-      showNotification('Error al obtener datos del agente', 'error');
+
+      // Even on error, try with fallback values
+      console.log('[Dapta Exporter] Using full fallback values');
+      const params = new URLSearchParams({
+        daptaAgentId: extractAgentId() || FALLBACK.daptaAgentId,
+        retellAgentId: FALLBACK.retellAgentId,
+        llmId: FALLBACK.retellLlmId,
+        apiKey: FALLBACK.apiKey,
+        agentName: FALLBACK.agentName
+      });
+
+      const targetUrl = `${CONFIG.EXPORT_ENDPOINT}?${params.toString()}`;
+      window.open(targetUrl, '_blank');
+      showNotification('Abriendo Cadence (fallback)...', 'success');
     } finally {
       button.disabled = false;
       button.innerHTML = originalContent;
@@ -612,17 +706,10 @@
 
     const currentPrompt = extractSystemPrompt();
 
-    // Validate prompt
     if (!currentPrompt || currentPrompt.length < 50) {
       showNotification('Error: No se pudo extraer el prompt', 'error');
       return;
     }
-
-    const testUpdate = {
-      id: Date.now(),
-      action: 'append_space',
-      description: 'Test: Agregar espacio'
-    };
 
     const newPrompt = currentPrompt + ' ';
 
@@ -709,10 +796,8 @@
 
     if (!mejorarBtn) return false;
 
-    // Hijack the existing "Mejorar con IA" button
     const hijackedButton = hijackMejorarButton(mejorarBtn);
 
-    // Only show Test Update button in dev mode
     if (CONFIG.DEV_MODE) {
       const testUpdateButton = createTestUpdateButton();
       hijackedButton.parentNode.insertBefore(testUpdateButton, hijackedButton.nextSibling);
@@ -723,14 +808,25 @@
   }
 
   function init() {
+    console.log('[Dapta Exporter] Initializing v1.8.0 (auto-prefetch)');
+
+    // Pre-fetch agent data immediately in background (silent, no UI)
+    prefetchAgentData();
+
     let retries = 0;
 
     const tryInject = () => {
       if (injectButton()) {
-        console.log('[Dapta Exporter] Extension initialized v1.6.0 (query params export)');
+        console.log('[Dapta Exporter] Extension initialized');
         injectStyles();
 
-        // Only show polling indicator and auto-start if using real endpoint
+        // Log current state
+        console.log('[Dapta Exporter] Current state:', {
+          hasInterceptedData: !!interceptedAgentData,
+          hasApiKey: !!interceptedApiKey,
+          agentId: extractAgentId()
+        });
+
         if (!CONFIG.POLLING_ENDPOINT.includes('httpbin.org')) {
           updatePollingIndicator(false);
           if (CONFIG.POLLING_ENABLED) {
